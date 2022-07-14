@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+    
+}
+.container{
+    height: 78vh;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.form-control{
+    width: 260px;
+}

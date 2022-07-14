@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+  <!-- <input [(ngModel)]="person.firstName" name="first"> -->
+  <app-navbar></app-navbar>
+    <h3 class="title">Defective Goods</h3>
+    <div class="container" id="defective-container">
+        <h5 style="margin-top: 8px;">Add Defective Good</h5>
+        <!--  -->
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm"  novalidate>
+          <!-- Product Name -->
+          <div class="form-group">
+            <div class="input-group">
+              <input [(ngModel)]="form.goodname" name="defectivename" class="form-control" placeholder="Product Name"
+                type="text" required goodname #name="ngModel">
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="No. of Items" type="number" name="quantity"
+                [(ngModel)]="form.quantity" quantity required #name="ngModel">
+            </div>
+          </div>
+          <br>
+          <!-- Select category -->
+          <div class="form-group">
+            <div class="input-group" placeholder="No. of Items" >
+              <select [(ngModel)]="form.category" name="category" class="form-select" placeholder="No. of Items"  required category >
+                <!-- <option disabled selected value="undefined">Select Category</option> -->
+                <option *ngFor="let category of categories" [selected]="category.name" [ngValue]="category.name">{{category.name}}</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn" style="background-color: #023047; color: #ffffff;">Add</button>
+          </form>
+      </div>
+
+
+      <!-- Update Defective Goods Modal -->
+      <div class="modal fade" id="updateDefectiveGoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{pageTitle}}</h5>
+              <button 
+                type="button" 
+                class="close" 
+                data-bs-dismiss="modal" 
+                aria-label="Close"
+                (click)="closeClick()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-update-defective [def]="def" *ngIf="ActivateUpdateComponent"></app-update-defective>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Update Product Modal -->
+
+
+    <div class="container">
+        <div class="defective mt-5" id="">
+            <table class="table" id="defective-table">
+                <thead class="thead" id="defective-thead">
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Category</th>
+                </thead>
+                <!-- defectiveGoodsData -->
+                <tr id="defective-tr" *ngFor="let def of defectiveGoodsData">
+                    <td>{{def.goodname}}</td>
+                    <td>{{def.quantity}}</td>
+                    <td *ngIf="categories">{{def.category}}</td>
+                    <td>
+                      <button 
+                        type="button" 
+                        class="btn btn-light mr-1"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#updateDefectiveGoodModal"  
+                        (click)="updateClick(def)"
+                        data-backdrop="static"
+                        style="margin-right: 30px;">
+                        <!-- Update icon  -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                      </button>
+
+                      <button type="button" class="btn mr-1" (click)="deleteClick(def)" style="color: red;">
+                        <!-- Delete icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                      </button> 
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <app-footer></app-footer> 
+</body>
+</html>

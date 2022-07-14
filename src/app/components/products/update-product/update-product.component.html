@@ -1,0 +1,96 @@
+
+<!-- <div style="padding: 10px;">
+    <h2 class="text-center fw-bold">Update Product</h2>
+  </div>
+<div class="container" style="border:1px solid #cecece;">
+    <form name="form" #f="ngForm" formControlName="categoryName"
+    novalidate> -->
+    <!-- Product Name -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <input name="product_name"  class="form-control" placeholder="Product Name"
+          type="text" required >
+      </div>
+    </div>
+    <br> -->
+    <!-- Expiry Date -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <input name="expiry_date" class="form-control" placeholder="Expiry Date"
+          type="date" required >
+      </div>
+    </div>
+    <br> -->
+    <!-- Select category -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <select name="category" class="form-select" formControlName="category" required category>
+          <option disabled selected value="undefined">Select Category</option>
+          <option ></option>
+        </select>
+      </div>
+    </div>
+    <br> -->
+    <!-- Items Quantity -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="No. of Items" type="number" name="quantity"
+          quantity required>
+      </div>
+    </div>
+    <br> -->
+    <!-- Item Status -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <select name="status" class="form-select" formControlName="status" required status >
+          <option disabled selected value="undefined">Status</option>
+          <option ></option>
+        </select>
+      </div>
+    </div>
+    <br> -->
+    <!-- Buying price -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="Buying Price" type="number" name="buying_price"
+          required buying_price >
+      </div>
+    </div>
+    <br> -->
+    <!-- Selling price -->
+    <!-- <div class="form-group">
+      <div class="input-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="Selling Price" type="number" name="selling_price"
+            required selling_price >
+        </div>
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn" style="background-color: #023047; color: #ffffff;">Add</button>
+  </form>
+</div> -->
+
+
+<div class="form-group row">
+  <div class="col-sm-2">
+    <label class="mt-3"><strong>Product Details</strong></label>
+  </div>
+  <div class="col-sm 10">
+      <input type="text" class="form-control mt-3 mb-3" [(ngModel)]="product_name" placeholder="Product Name">
+
+      <input type="text" class="form-control mb-3" [(ngModel)]="category" placeholder="Quantity">
+
+      <input type="text" class="form-control mb-3" [(ngModel)]="status" placeholder="Payment Status">
+
+      <input type="text" class="form-control mb-3" [(ngModel)]="buying_price" placeholder="Buying Price">
+
+      <input type="text" class="form-control mb-3" [(ngModel)]="selling_price" placeholder="Selling Price">
+
+      <input type="text" class="form-control mb-3" [(ngModel)]="expiry_date" placeholder="Expiry Date">
+  </div>
+</div>
+
+<button (click)="updateProduct()" *ngIf="product.id!=0" class="btn btn-success mt-2 mb-3">
+  Update  
+</button>

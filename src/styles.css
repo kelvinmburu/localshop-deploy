@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap');
+$fa-font-path: "../../../node_modules/font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+
+
+
+*{
+    font-family: 'Poppins', sans-serif; 
+}
